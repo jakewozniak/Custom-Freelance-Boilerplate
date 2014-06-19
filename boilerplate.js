@@ -1,25 +1,30 @@
 // Open external sites in new window
-$('a[rel="nofollow"],a[rel="external"]').click(function (event) { 
+jQuery('a[rel="nofollow"],a[rel="external"]').click(function (event) { 
      event.preventDefault(); 
      window.open(this.href);
 });
 
 // Hover Class on Touch
-$( "" ).bind("tap", function(event) {
+jQuery( "" ).bind("tap", function(event) {
 	event.preventDefault();
-	$(this).toggleClass("hover");
+	jQuery(this).toggleClass("hover");
 })
 
 // Smooth Scrolling 
-$("").click(function() {
+jQuery("").click(function() {
 	if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-		var target = $(this.hash);
-		target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+		var target = jQuery(this.hash);
+		target = target.length ? target : jQuery('[name=' + this.hash.slice(1) +']');
 		if (target.length) {
-			$('html,body').animate({
+			jQuery('html,body').animate({
 				scrollTop: target.offset().top
 			}, 1000);
 			return false;
 		}
 	}
+});
+
+// .SVG Fallback to .PNG */
+jQuery('.no-svg img[src*="svg"]').attr('src', function() {
+	return jQuery(this).attr('src').replace('.svg', '.png');
 });
